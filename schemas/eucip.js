@@ -10,6 +10,9 @@ const eucipSchema = mongoose.Schema({
     },
     topic:{
         type: String
+    },
+    id:{
+        type: String
     }
 });
 

@@ -80,6 +80,7 @@ router.get('/add', (req, res) => {
     });
 });
 router.post('/add/eucip', (req, res) => {
+    Eucip.find({}, (err, database_dump) => {
     const awnser_count = req.body.awnser_amount;
     let awnsers = [];
     for(let i = 0; i < awnser_count; i++){
@@ -89,6 +90,7 @@ router.post('/add/eucip', (req, res) => {
         });
     }
     let eucip = new Eucip();
+    eucip.id = database_dump.length;
     eucip.topic = req.body.topic;
     eucip.question = req.body.question;
     eucip.answers = awnsers;
@@ -99,7 +101,8 @@ router.post('/add/eucip', (req, res) => {
         } else {
             res.redirect('/questions');
         }
-    })
+    });
+    });
 });
 
 module.exports = router;
