@@ -8,14 +8,17 @@ const urlEncodedParser = bodyParser.urlencoded({extended: false});
 * GET
 * */
 router.get('/', (req, res) => {
-    Eucip.find({}, (err, eucip) => {
-        if (err) {
-            throw err
-        } else {
-            console.log(eucip);
-        }
-        res.render('challenge', {
-            data: eucip
+    Eucip.count({}).exec((err, count) => {
+        if (err) throw err;
+
+        //get random entry
+        const random = Math.floor(Math.random() * count);
+
+        Eucip.findOne().skip(random).exec((err, result) => {
+
+            res.render('challenge', {
+                data: result
+            });
         });
     });
 });
@@ -39,27 +42,33 @@ router.get('/development', (req, res) => {
 
 
 router.get('/management', (req, res) => {
-    Eucip.find({category: 'Haldus'}, (err, eucip) => {
-        if (err) {
-            throw err
-        } else {
-            console.log(eucip);
-        }
-        res.render('challenge', {
-            data: eucip
+    Eucip.count({topic: "Haldus"}).exec((err, count) => {
+        if (err) throw err;
+
+        //get random entry
+        const random = Math.floor(Math.random() * count);
+
+        Eucip.findOne().skip(random).exec((err, result) => {
+
+            res.render('challenge', {
+                data: result
+            });
         });
     });
 });
 
 router.get('/leadership', (req, res) => {
-    Eucip.find({category: 'Juhtimine'}, (err, eucip) => {
-        if (err) {
-            throw err
-        } else {
-            console.log(eucip);
-        }
-        res.render('challenge', {
-            data: eucip
+    Eucip.count({topic: "Juhtimine"}).exec((err, count) => {
+        if (err) throw err;
+
+        //get random entry
+        const random = Math.floor(Math.random() * count);
+
+        Eucip.findOne().skip(random).exec((err, result) => {
+
+            res.render('challenge', {
+                data: result
+            });
         });
     });
 });
