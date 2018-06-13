@@ -1,0 +1,35 @@
+<div class="challenge-container  center">
+    <div class="challenge-container-head blue-grey darken-1 white-text valign-wrapper center-align">
+        <p class="challenge-question">{{data.question}}</p>
+    </div>
+    <div class="challenge-container-body whitevalign-wrapper">
+        <div class="question-container">
+            {{#each data.answers}}
+                <div class="question-checkbox question-{{@index}}-container">
+                    <label class="question-label-{{@index}}">
+                        <input class="question-{{@index}}" type="checkbox"/>
+                        <span>{{this.awnser}}</span>
+                    </label>
+                    <div class="awnser a-{{@index}} hiddendiv">
+                        {{#ifCond 'true' this.check}}
+                            <label>
+                                <input  class="solution-{{@index}}" type="checkbox" checked="checked" />
+                                <span></span>
+                            </label>
+                        {{else}}
+
+                            <label>
+                                <input type="checkbox"/>
+                                <span></span>
+                            </label>
+                        {{/ifCond}}
+                    </div>
+                </div>
+            {{/each}}
+        </div>
+    </div>
+    <div class="challenge-container-footer blue-grey">
+        <button class="btn btn-large btn-question-add waves-effect waves-light green btn-check" onclick="checkAwnsers()">Kontrolli</button>
+        <button class="btn btn-large btn-question-add waves-effect waves-light green btn-check" onclick="nextQuestion()">Järgmine</button>
+    </div>
+</div>

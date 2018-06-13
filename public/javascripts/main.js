@@ -3,9 +3,9 @@ function amountOfQuestions() {
     let e = document.querySelector("#amount-of-questions");
     let value = e.options[e.selectedIndex].value;
     let text = e.options[e.selectedIndex].text;
-     for(let i = 1; i <= value; i++){
-         console.log(i);
-         $('#data-submit-form').append(`
+    for (let i = 1; i <= value; i++) {
+        console.log(i);
+        $('#data-submit-form').append(`
              <div id="${i}" class="generated-input input-field col s6">
                 <input id="answer-${i}" name="answer-${i}" type="text" class="generated-input validate" style="width: 70%;" required>
                 <label for="asnwer-${i}">${i}. Vastuse variant</label>
@@ -17,11 +17,11 @@ function amountOfQuestions() {
                 </p>
             </div>
          `)
-     }
+    }
     console.log(value);
 }
 
-window.onload = function() {
+window.onload = function () {
     amountOfQuestions();
 };
 
@@ -35,7 +35,7 @@ $(document).ready(function () {
     }
 });
 
-function sendDataToServer(){
+function sendDataToServer() {
 
     let awnserArray = [];
     const question = document.querySelector("#question").value;
@@ -45,19 +45,21 @@ function sendDataToServer(){
     const topic = topicElement.options[topicElement.selectedIndex].value;
 
     //generate objects
-    for(let i = 1; i <= awnserCounts; i++){
+    for (let i = 1; i <= awnserCounts; i++) {
         console.log(i);
         let awnser = document.querySelector(`#answer-${i}`).value;
         let awnser_result = $(`#checkbox-${i}`).is(":checked");
-        awnserArray.push({awnser: awnser, check: awnser_result });
+        awnserArray.push({awnser: awnser, check: awnser_result});
     }
     console.log(awnserCounts);
-    $.post('/add/eucip',{
+    $.post('/add/eucip', {
         awnsers: awnserArray,
         awnser_amount: awnserCounts,
         topic: topic,
         question: question
-    },(data,status)=>{console.log('sent')});
+    }, (data, status) => {
+        console.log('sent')
+    });
 
 
     $('.posted-element').remove();
@@ -69,9 +71,32 @@ function sendDataToServer(){
     <p id="awnsers-test"></p>
     </div>
     `);
-    awnserArray.forEach((awnser, i)=>{
+    awnserArray.forEach((awnser, i) => {
         $('#awnsers-test').append(`<p><b>${i + 1}.Vastus(${awnser.check})</b>:  ${awnser.awnser}`);
     });
 }
 
+function checkAwnsers() {
+    const elements = document.querySelectorAll('.awnser').length;
+    for(var i=0; i< elements; i++){
+        document.querySelector('.a-'+i).classList.remove('hiddendiv');
 
+        let awnsered = $(`.question-${i}`).is(":checked");
+        let awnser = $(`.solution-${i}`).is(":checked");
+        console.log(awnsered, awnser);
+        if(awnsered === awnser){
+            console.log('correct');
+            $(`.question-${i}-container`).addClass('correct-awnser');
+            $(`.question-label-${i}`).css('color','white');
+        }
+        if(awnsered !== awnser){
+            console.log('wrong');
+            $(`.question-${i}-container`).addClass('wrong-awnser');
+            $(`.question-label-${i}`).css('color','white');
+        }
+
+    }
+}
+function nextQuestion(){
+    location.reload();
+}
