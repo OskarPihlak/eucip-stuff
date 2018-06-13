@@ -100,3 +100,4 @@ function checkAwnsers() {
 function nextQuestion(){
     location.reload();
 }
+
