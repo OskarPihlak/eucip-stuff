@@ -1,8 +1,31 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+
+.btn-center{
+  margin: 5px 5px 5px 50%;
+  transform:translateX(-50%);
+}
+.btn-question-add{
+
+}
+.add-form:hover{
+  color: darkolivegreen;
 }
 
-a {
-  color: #00B7FF;
+.generated-input{
+  display: inline;
+  width: 70%;
+}
+.generated-checkbox{
+  display: inline-block;
+}
+.question-container{
+  display: inline-table;
+  padding: 10px;
+  margin: 10px;
+  height: 300px;
+  width: 271px;
+}
+.counter{
+  margin: -5px 0 -15px 0;
+  padding: 0;
+  text-align: left;
 }

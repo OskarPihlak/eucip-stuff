@@ -1,0 +1,47 @@
+<div class="questions-container">
+
+    <!-- <button class="btn btn-large waves-effect waves-light green">Kontrolli</button>-->
+</div>
+
+<div class="add-to-database">
+    <a href="/questions"><button type="submit" onclick="sendDataToServer()" class="btn btn-large btn-question-add waves-effect waves-light green btn-center">Lisa
+        andmebaasi
+    </button></a>
+    <form id="data-submit-form" method="POST" action="/add/eucip">
+        <!-- THE QUESTION -->
+        <div class="input-field col s3 input-amout-of-questions">
+            <select id="input-topic" name="topic">
+                <option value="" disabled selected>Teema</option>
+                <option value="Arendus" selected>Arendus</option>
+                <option value="Juhtimine">Juhtimine</option>
+                <option value="Haldus">Haldus</option>
+            </select>
+            <label>Teemad</label>
+        </div>
+        <div class="input-field col s6">
+            <input id="question" name="question" type="text" class="validate" required>
+            <label for="question">Küsimus</label>
+        </div>
+        <div class="input-field col s3 input-amout-of-questions center-align">
+            <select name="amount-of-questions" id="amount-of-questions" onchange="amountOfQuestions()" onload="amountOfQuestions()">
+                <option value="" disabled selected>Vastuste arv</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4" selected>4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+            </select>
+            <label>Vastused</label>
+        </div>
+    </form>
+
+</div>
+<div id="last-time-posted" class="" style="width: 400px; height: 400px;"></div>
+<script>
+
+    $(document).ready(function(){
+        $('select').formSelect();
+    });
+
+</script>

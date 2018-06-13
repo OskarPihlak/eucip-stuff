@@ -1,0 +1,19 @@
+<div>
+ {{#each data}}
+    <div class="question-container  blue lighten-5">
+      <p class="counter">{{@index}}</p>
+          <p><b>Teema</b>:{{this.topic}}</p>
+        <p><b>Küsimus</b>:{{this.question}}</p>
+        <ul>
+            <b>Vastused</b>
+        {{#each this.answers}}
+            {{#ifCond 'true' this.check}}
+                <li class="green-text darken-3">{{@index}} - {{this.awnser}}</li>
+            {{else}}
+                <li class="red-text">{{@index}} - {{this.awnser}}</li>
+            {{/ifCond}}
+        {{/each}}
+        </ul>
+    </div>
+    {{/each}}
+</div>
