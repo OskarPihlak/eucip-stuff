@@ -4,6 +4,7 @@ const Eucip = require('../schemas/eucip');
 const Count = require('../schemas/count');
 const bodyParser = require('body-parser');
 const urlEncodedParser = bodyParser.urlencoded({extended: false});
+const moment = require('moment');
 /*
 *
 * GET
@@ -134,7 +135,7 @@ router.post('/add/eucip', (req, res) => {
 router.post('/add/count', (req, res) => {
    Count.findOne({}, (err, count_element) => {
        count_element.count++;
-       Count.findOneAndUpdate({}, {$set: {count: count_element.count}}, {new: true},(err, doc) => {
+       Count.findOneAndUpdate({}, {$set: {count: count_element.count, last_question_checked: moment() }}, {new: true},(err, doc) => {
            if (err) {
                console.log("Something wrong when updating data!");
            }
