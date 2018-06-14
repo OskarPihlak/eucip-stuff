@@ -42,14 +42,13 @@ router.get('/development', (req, res) => {
 
 
 router.get('/management', (req, res) => {
-    Eucip.count({topic: "Haldus"}).exec((err, count) => {
+    Eucip.find({topic: "Haldus"}, (err, eucip) => {
         if (err) throw err;
-
+        let count = eucip.length;
         //get random entry
         const random = Math.floor(Math.random() * count);
 
-        Eucip.findOne().skip(random).exec((err, result) => {
-
+        Eucip.findOne({topic: "Haldus"}).skip(random).exec((err, result) => {
             res.render('challenge', {
                 data: result
             });
@@ -58,14 +57,13 @@ router.get('/management', (req, res) => {
 });
 
 router.get('/leadership', (req, res) => {
-    Eucip.count({topic: "Juhtimine"}).exec((err, count) => {
+    Eucip.find({topic: "Juhtimine"}, (err, eucip) => {
         if (err) throw err;
-
+        let count = eucip.length;
         //get random entry
         const random = Math.floor(Math.random() * count);
 
-        Eucip.findOne().skip(random).exec((err, result) => {
-
+        Eucip.findOne({topic: "Juhtimine"}).skip(random).exec((err, result) => {
             res.render('challenge', {
                 data: result
             });
