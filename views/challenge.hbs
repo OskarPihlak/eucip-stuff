@@ -1,6 +1,7 @@
 <div class="challenge-container  center">
     <div class="challenge-container-head blue-grey darken-1 white-text valign-wrapper center-align">
         <p class="challenge-question">{{data.question}}</p>
+        <p class="time-indicator"></p>
     </div>
     <div class="challenge-container-body whitevalign-wrapper">
         <div class="question-container">
@@ -41,6 +42,7 @@
         switch (e.which){
             case 13:
                 $( '#btn-check').click();
+                clearInterval(myTimer);
                 break;
             case 39:
                 $( '#btn-next').click();
@@ -77,4 +79,22 @@
                 break;
         }
     });
+
+    var getTimeString = function(timeInMs) {
+        var delim = ":";
+        var hours = Math.ceil(timeInMs / (1000 * 60 * 60) % 60);
+        var minutes = Math.floor(timeInMs / (1000 * 60) % 60);
+        var seconds = Math.floor(timeInMs / 1000 % 60);
+        minutes = minutes < 10 ? '0' + minutes : minutes;
+        seconds = seconds < 10 ? '0' + seconds : seconds;
+        $('.time-indicator').html(minutes + delim + seconds);
+        return minutes + delim + seconds;
+    };
+
+      const compareDate= new Date();
+      var myTimer = setInterval(myClock, 1000);
+      function myClock() {
+         var diff = Math.abs(new Date() - compareDate);
+         getTimeString(diff);
+    }
 </script>

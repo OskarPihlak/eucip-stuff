@@ -77,6 +77,7 @@ function sendDataToServer() {
 }
 
 function checkAwnsers() {
+    clearInterval(myTimer);
     const elements = document.querySelectorAll('.awnser').length;
     for(var i=0; i< elements; i++){
         document.querySelector('.a-'+i).classList.remove('hiddendiv');
