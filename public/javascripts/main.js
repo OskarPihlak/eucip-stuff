@@ -96,6 +96,7 @@ function checkAwnsers() {
         }
 
     }
+    $.post('/add/count');
 }
 function nextQuestion(){
     location.reload();
