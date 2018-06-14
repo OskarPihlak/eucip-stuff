@@ -17,7 +17,8 @@ router.get('/', (req, res) => {
         Eucip.findOne().skip(random).exec((err, result) => {
 
             res.render('challenge', {
-                data: result
+                data: result,
+                element_count: count
             });
         });
     });
@@ -25,16 +26,16 @@ router.get('/', (req, res) => {
 
 router.get('/development', (req, res) => {
 
-    Eucip.count({topic: "Arendus"}).exec((err, count) => {
+    Eucip.find({topic: "Arendus"}, (err, eucip_development) => {
         if (err) throw err;
-
+        let count = eucip_development.length;
         //get random entry
         const random = Math.floor(Math.random() * count);
 
-        Eucip.findOne().skip(random).exec((err, result) => {
-
+        Eucip.findOne({topic: "Arendus"}).skip(random).exec((err, result) => {
             res.render('challenge', {
-                data: result
+                data: result,
+                element_count: count
             });
         });
     });
@@ -42,30 +43,32 @@ router.get('/development', (req, res) => {
 
 
 router.get('/management', (req, res) => {
-    Eucip.find({topic: "Haldus"}, (err, eucip) => {
+    Eucip.find({topic: "Haldus"}, (err, eucip_management) => {
         if (err) throw err;
-        let count = eucip.length;
+        let count = eucip_management.length;
         //get random entry
         const random = Math.floor(Math.random() * count);
 
         Eucip.findOne({topic: "Haldus"}).skip(random).exec((err, result) => {
             res.render('challenge', {
-                data: result
+                data: result,
+                element_count: count
             });
         });
     });
 });
 
 router.get('/leadership', (req, res) => {
-    Eucip.find({topic: "Juhtimine"}, (err, eucip) => {
+    Eucip.find({topic: "Juhtimine"}, (err, eucip_leadership) => {
         if (err) throw err;
-        let count = eucip.length;
+        let count = eucip_leadership.length;
         //get random entry
         const random = Math.floor(Math.random() * count);
 
         Eucip.findOne({topic: "Juhtimine"}).skip(random).exec((err, result) => {
             res.render('challenge', {
-                data: result
+                data: result,
+                element_count: count
             });
         });
     });

@@ -4,12 +4,12 @@
     </div>
     <div class="challenge-container-body whitevalign-wrapper">
         <div class="question-container">
-            <p>{{data.topic}}</p>
+            <p class="topic-indicator">{{data.topic}}</p>
             {{#each data.answers}}
                 <div class="question-checkbox question-{{@index}}-container">
                     <label class="question-label-{{@index}}">
                         <input class="question-{{@index}}" type="checkbox"/>
-                        <span>{{this.awnser}}</span>
+                        <span style="color:black">{{this.awnser}}</span>
                     </label>
                     <div class="awnser a-{{@index}} hiddendiv">
                         {{#ifCond 'true' this.check}}
@@ -30,6 +30,7 @@
         </div>
     </div>
     <div class="challenge-container-footer blue-grey">
+        <p class ="center-align question-count">{{element_count}}. küsimust</p>
         <button class="btn btn-large btn-question-add waves-effect waves-light green btn-check" onclick="checkAwnsers()">Kontrolli</button>
         <button class="btn btn-large btn-question-add waves-effect waves-light green btn-check" onclick="nextQuestion()">Järgmine</button>
     </div>
