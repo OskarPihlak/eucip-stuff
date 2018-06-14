@@ -31,7 +31,50 @@
     </div>
     <div class="challenge-container-footer blue-grey">
         <p class ="center-align question-count">{{element_count}}. küsimust</p>
-        <button class="btn btn-large btn-question-add waves-effect waves-light green btn-check" onclick="checkAwnsers()">Kontrolli</button>
-        <button class="btn btn-large btn-question-add waves-effect waves-light green btn-check" onclick="nextQuestion()">Järgmine</button>
+        <button id="btn-check" class="btn btn-large btn-question-add waves-effect waves-light green btn-check" onclick="checkAwnsers()">Kontrolli</button>
+        <button id="btn-next" class="btn btn-large btn-question-add waves-effect waves-light green btn-check btn-anchor-next disabled" onclick="nextQuestion()">Järgmine</button>
     </div>
 </div>
+<script>
+    $(document).keydown(e=> {
+        console.log(e);
+        switch (e.which){
+            case 13:
+                $( '#btn-check').click();
+                break;
+            case 39:
+                $( '#btn-next').click();
+                break;
+            case 49:
+                $( '.question-0').click();
+                break;
+            case 50:
+                $( '.question-1').click();
+                break;
+            case 51:
+                $( '.question-2').click();
+                break;
+            case 52:
+                $( '.question-3').click();
+                break;
+            case 53:
+                $( '.question-4').click();
+                break;
+            case 54:
+                $( '.question-5').click();
+                break;
+            case 55:
+                $( '.question-6').click();
+                break;
+            case 56:
+                $( '.question-7').click();
+                break;
+            case 57:
+                $( '.question-8').click();
+                break;
+            case 58:
+                $( '.question-9').click();
+                break;
+        }
+    });
+</script>

@@ -94,8 +94,8 @@ function checkAwnsers() {
             $(`.question-${i}-container`).addClass('wrong-awnser');
             $(`.question-label-${i}`).css('color','white');
         }
-
     }
+        $('.btn-anchor-next').removeClass("disabled");
     $.post('/add/count');
 }
 function nextQuestion(){
