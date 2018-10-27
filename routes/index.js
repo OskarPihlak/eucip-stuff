@@ -76,6 +76,23 @@ router.get('/leadership', (req, res) => {
     });
 });
 
+router.get('/terms', (req, res) => {
+    Eucip.find({topic: "Terminoloogia"}, (err, terms) => {
+        if (err) throw err;
+        let count = terms.length;
+        //get random entry
+        const random = Math.floor(Math.random() * count);
+
+        Eucip.findOne({topic: "Terminoloogia"}).skip(random).exec((err, result) => {
+            res.render('challenge', {
+                data: result,
+                element_count: count
+            });
+        });
+    });
+});
+
+
 
 router.get('/questions', (req, res) => {
     Eucip.find({}, (err, eucip) => {
